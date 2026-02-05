@@ -4,7 +4,8 @@ CREATE TABLE usuarios (
     matricula VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
-    tipo VARCHAR(20) NOT NULL CHECK (tipo IN ('PROFESSOR', 'ALUNO'))
+    tipo VARCHAR(20) NOT NULL CHECK (tipo IN ('PROFESSOR', 'ALUNO')),
+    administrador BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE materias (
@@ -12,6 +13,8 @@ CREATE TABLE materias (
     nome VARCHAR(100) NOT NULL,
     professor_id INTEGER NOT NULL,
     FOREIGN KEY (professor_id) REFERENCES usuarios(id)
+    CHECK (professor_id IN (SELECT id FROM usuarios WHERE tipo = 'PROFESSOR'))
+    CHECK (administrador = FALSE)
 );
 
 CREATE TABLE notas (
@@ -21,22 +24,33 @@ CREATE TABLE notas (
     nota1 DECIMAL(4,2),
     nota2 DECIMAL(4,2),
     media DECIMAL(4,2),
-    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
     FOREIGN KEY (aluno_id) REFERENCES usuarios(id),
     FOREIGN KEY (materia_id) REFERENCES materias(id),
     UNIQUE(aluno_id, materia_id)
+    CHECK (aluno_id IN (SELECT id FROM usuarios WHERE tipo = 'ALUNO'))
 );
 
 CREATE TABLE comentarios (
     id SERIAL PRIMARY KEY,
     aluno_id INTEGER NOT NULL,
-    professor_id INTEGER NOT NULL,
     materia_id INTEGER NOT NULL,
-    comentario TEXT NOT NULL,
+    comentario varchar(255) NOT NULL,
     data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (aluno_id) REFERENCES usuarios(id),
     FOREIGN KEY (professor_id) REFERENCES usuarios(id),
     FOREIGN KEY (materia_id) REFERENCES materias(id)
+    CHECK (aluno_id IN (SELECT id FROM usuarios WHERE tipo = 'ALUNO'))
+    CHECK (professor_id IN (SELECT id FROM usuarios WHERE tipo = 'PROFESSOR'))
+    join comentarios on  materias.id = comentarios.materia_id
+);
+
+CREATE TABLE administradores (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id) REFERENCES usuarios(id)
+    CHECK (id in (select id from usuarios where administrador = true))
 );
 
 INSERT INTO usuarios (nome, matricula, email, senha, tipo) VALUES
