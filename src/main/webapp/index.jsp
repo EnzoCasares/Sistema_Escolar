@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="refresh" content="0;url=cadastro.jsp">
     <title>JSP - Hello World</title>
 </head>
 <body>
