@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/main/webapp/css/aluno.css">
+    <link rel="shortcut icon" href="/src/main/webapp/img/logo.svg">
+    <title>Grade horária</title>
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-circle"><img class="logo-img" src="/src/main/webapp/img/logo.svg" alt=""></div>
+                <span class="brand-name">Instituto<span>RNE</span></span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="/src/main/webapp/aluno/aluno.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/inicio.png" alt=""></span> Início
+                </a>
+                <a href="/src/main/webapp/aluno/disciplinas.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/inicio.png" alt=""></span> Disciplinas
+                </a>
+                <a href="/src/main/webapp/aluno/boletim.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/nota.png" alt=""></span> Boletim
+                </a>
+                <a href="/src/main/webapp/aluno/observacoes-alunos.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/inicio.png" alt=""></span> Observações
+                </a>
+                <a href="/src/main/webapp/aluno/grade-alunos.html" class="nav-link active">
+                    <span class="icon"><img src="/src/main/webapp/img/inicio.png" alt=""></span> Grade horária
+                </a>
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="avatar">RB</div>
+                <div class="user-meta">
+                    <span class="u-name">Rodrigo B.</span>
+                    <span class="u-status">Online</span>
+                </div>
+            </div>
+        </aside>
+    <main>
+        <div class="topo">
+            <h2 class="titulo">Grade horária</h2>
+            <div class="acoes">
+                <button class="btn-dia">Segunda-feira ▾</button>
+                <div class="search-bar">
+                    <input type="text" placeholder="Pesquisar aulas, notas...">
+                </div>
+            </div>
+        </div>
+
+        <div class="lista-grade">
+
+            <div class="card">
+                <div class="info">
+                    <strong>Geografia</strong>
+                    <span>2°H</span>
+                </div>
+                <p>7:00 às 7:50</p>
+            </div>
+
+            <div class="card">
+                <div class="info">
+                    <strong>Geografia</strong>
+                    <span>1°G</span>
+                </div>
+                <p>7:50 às 8:40</p>
+            </div>
+
+            <div class="card">
+                <div class="info">
+                    <strong>História</strong>
+                    <span>2°F</span>
+                </div>
+                <p>8:40 às 9:30</p>
+            </div>
+
+            <div class="card">
+                <div class="info">
+                    <strong>Sociologia</strong>
+                    <span>1°H</span>
+                </div>
+                <p>9:30 às 10:20</p>
+            </div>
+
+            <div class="card">
+                <div class="info">
+                    <strong>Química</strong>
+                    <span>1°H</span>
+                </div>
+                <p>10:20 às 11:10</p>
+            </div>
+
+        </div>
+    </main>
+</body>
+
+</html>
