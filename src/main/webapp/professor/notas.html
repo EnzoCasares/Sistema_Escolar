@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos</title>
+    <link rel="stylesheet" href="/src/main/webapp/css/professor.css">
+    <link rel="icon" href="/src/main/webapp/img/logo.svg">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-circle">
+                    <img class="logo-img" src="/src/main/webapp/img/logo.svg" alt="">
+                </div>
+                <span class="brand-name">Insituto<span>RME</span></span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="/src/main/webapp/professor/professor.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/inicio.png" alt=""></span> <span>Painel Geral</span>
+                </a>
+                <a href="/src/main/webapp/professor/meus-alunos.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/alunos.png" alt=""></span> <span>Meus alunos</span>
+                </a>
+                <a href="/src/main/webapp/professor/notas.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/nota.png" alt=""></span> <span>Lançar Notas</span>
+                </a>
+                <a href="/src/main/webapp/professor/grade-horaria.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/grade-horaria.png" alt=""></span> <span>Grade horária</span>
+                </a>
+                <a href="/src/main/webapp/professor/observacoes.html" class="nav-link active">
+                    <span class="icon"><img src="/src/main/webapp/img/observacao.png" alt=""></span> <span>Observações</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="avatar">L</div>
+                <div class="user-meta">
+                    <span class="u-name">Prof. Lisete</span>
+                    <span class="u-status">Matemática</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content-area">
+
+        <div class="topo">
+            <h2>Notas</h2>
+
+            <div class="filtros">
+                <button>Filtrar ▾</button>
+                <button>Lançar nota +</button>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar aluno ou turma...">
+                </div>
+            </div>
+        </div>
+
+        <div class="tabela-container">
+            <div class="tabela-scroll">
+                <table>
+                    <thead>
+                        <tr class="titulos-tabela">
+                            <th>Matrícula</th>
+                            <th>Nome</th>
+                            <th>N1</th>
+                            <th>N2</th>
+                            <th>Média</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>0128</td>
+                            <td>Mariana Proque</td>
+                            <td>10.00</td>
+                            <td>10.00</td>
+                            <td>10.00</td>
+                        </tr>
+
+                        <tr>
+                            <td>0128</td>
+                            <td>Rodrigo Bolgheroni</td>
+                            <td>9.30</td>
+                            <td>9.30</td>
+                            <td>9.30</td>
+                        </tr>
+
+                        <tr>
+                            <td>0128</td>
+                            <td>Rogerio Buscariolo</td>
+                            <td>9.00</td>
+                            <td>9.00</td>
+                            <td>9.00</td>
+                        </tr>
+
+                        <tr>
+                            <td>0128</td>
+                            <td>Enzo Casares</td>
+                            <td>8.30</td>
+                            <td>8.30</td>
+                            <td>8.30</td>
+                        </tr>
+
+                        <tr>
+                            <td>0128</td>
+                            <td>Enzo Nascimento</td>
+                            <td>8.00</td>
+                            <td>8.00</td>
+                            <td>8.00</td>
+                        </tr>
+
+                        <tr>
+                            <td>0128</td>
+                            <td>Silvio Proque</td>
+                            <td>7.30</td>
+                            <td>7.30</td>
+                            <td>7.30</td>
+                        </tr>
+
+                        <tr>
+                            <td>0128</td>
+                            <td>Ana Paula Proque</td>
+                            <td>7.00</td>
+                            <td>7.00</td>
+                            <td>7.00</td>
+                        </tr>
+
+                        <tr>
+                            <td>0128</td>
+                            <td>Bianca Proque</td>
+                            <td>6.30</td>
+                            <td>6.30</td>
+                            <td>6.30</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
