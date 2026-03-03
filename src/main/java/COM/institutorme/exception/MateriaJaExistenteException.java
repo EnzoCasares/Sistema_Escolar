@@ -6,7 +6,7 @@ public class MateriaJaExistenteException extends  ValidationException{
 
 
     public MateriaJaExistenteException(String materia){
-        super("Matéria já existente: "+materia);
+        super("Matéria já existente: "+ materia);
         this.materia = materia;
     }
 

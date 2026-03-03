@@ -70,4 +70,10 @@ public class UsuarioDAO {
         usuario.setCriadoEm(rs.getTimestamp("criado_em"));
         return usuario;
     }
+
+
+
+
+
+
 }

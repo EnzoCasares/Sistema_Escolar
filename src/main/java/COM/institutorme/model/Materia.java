@@ -4,12 +4,15 @@ package COM.institutorme.model;
 public class Materia {
     private long id;
     private String nome;
-    private long idProfessor;
+    private long ProfessorId;
 
     public Materia(long id, String nome, long idProfessor) {
         this.id = id;
         this.nome = nome;
-        this.idProfessor = idProfessor;
+        this.ProfessorId = idProfessor;
+    }
+
+    public Materia() {
     }
 
     public long getId() {
@@ -20,8 +23,8 @@ public class Materia {
         return nome;
     }
 
-    public long getIdProfessor() {
-        return idProfessor;
+    public long getProfessorId() {
+        return ProfessorId;
     }
 
 

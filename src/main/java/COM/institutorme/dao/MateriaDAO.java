@@ -17,7 +17,7 @@ public class MateriaDAO {
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
             pstmt.setString(1, materia.getNome());
-            pstmt.setLong(2,materia.getIdProfessor());
+            pstmt.setLong(2,materia.getProfessorId());
             if (pstmt.executeUpdate()>0){
                 return 1;
             }
@@ -47,7 +47,7 @@ public class MateriaDAO {
             }
 
         }catch (SQLException e){
-            throw new DAOException("Ocorreu um erro ao adicionar a matéria",e);
+            throw new DAOException("Ocorreu um erro ao deletar a matéria",e);
         }
     }
 
@@ -133,6 +133,51 @@ public class MateriaDAO {
         return materias;
     }
 
+
+
+    public Materia verificarMateria(String nome){
+        ResultSet rset;
+        Materia materia = new Materia();
+        String sql = """
+                SELECT ID,NOME,PROFESSOR_ID 
+                FROM MATERIA WHERE NOME = ?
+                """;
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,nome);
+            rset = pstmt.getResultSet();
+            if (rset.next()) {
+                materia = new Materia(rset.getLong("id"), rset.getString("nome"), rset.getLong("professor_id"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Erro ao buscar matérias", e);
+        }
+        return materia;
+    }
+
+
+    public List<Materia> listarMateria(String nome){
+        ResultSet rset;
+        List<Materia> materias = new ArrayList<>();
+        String sql = """
+                SELECT ID,NOME,PROFESSOR_ID 
+                FROM MATERIA WHERE NOME LIKE ?
+                """;
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,"%" + nome + "%");
+
+            rset = pstmt.getResultSet();
+            while (rset.next()){
+                Materia materia = new Materia(rset.getLong("id"),rset.getString("nome"),rset.getLong("professor_id"));
+                materias.add(materia);
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Erro ao buscar matérias", e);
+        }
+        return materias;
+    }
 
 }
 
