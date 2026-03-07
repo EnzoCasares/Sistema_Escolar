@@ -93,7 +93,7 @@ body {
 
 .nav-link:hover, 
 .nav-link.active {
-    background: #ecfdf5; /* Fundo verde clarinho no hover */
+    background: #ecfdf5; 
     color: var(--accent-teacher);
 }
 
@@ -353,6 +353,7 @@ td {
     border-radius: 16px;
     padding: 18px 25px;
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    border: 1px solid var(--border);
     color: black;
 }
 
@@ -363,9 +364,8 @@ td {
 }
 
 .card:hover{
-    transition: 0.3s;
-    background: var(--accent-dark);
-    color: white;
+    border-color: var(--accent-dark);
+    transition: 0.3s ease;
 }
 
 .turma {
