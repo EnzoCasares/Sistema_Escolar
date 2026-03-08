@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../img/logo.svg">
+    <link rel="stylesheet" href="../css/aluno.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <title>Disciplinas | Instituto RME</title>
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-circle">R</div>
+                <span class="brand-name">Instituto<span>RME</span></span>
+            </div>
+            <nav class="nav-menu">
+                <a href="home.html" class="nav-link">
+                    <i data-feather="home"></i>
+                    <span>Início</span>
+                </a>
+
+                <a href="disciplinas.html" class="nav-link active">
+                    <i data-feather="book"></i>
+                    <span>Disciplinas</span>
+                </a>
+
+                <a href="boletim.html" class="nav-link">
+                    <i data-feather="bar-chart-2"></i>
+                    <span>Boletim</span>
+                </a>
+
+                <a href="observacoes.html" class="nav-link">
+                    <i data-feather="message-square"></i>
+                    <span>Observações</span>
+                </a>
+
+                <a href="grade.html" class="nav-link">
+                    <i data-feather="calendar"></i>
+                    <span>Grade horária</span>
+                </a>
+            </nav>
+            <div class="sidebar-user">
+                <div class="avatar" id="avatarSidebar">?</div>
+                <div class="user-meta">
+                    <span class="u-name" id="nomeSidebar">Carregando...</span>
+                    <span class="u-status">Online</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="content-area">
+            <div class="page-header">
+                <h2 class="titulo">Disciplinas</h2>
+                <div class="search-bar">
+                    <input type="text" id="filtroDisciplina" placeholder="Filtrar disciplinas...">
+                </div>
+            </div>
+
+            <div id="resumoDisciplinas" style="margin-bottom:24px;"></div>
+
+            <section id="materias">
+                <div class="loading">Carregando disciplinas...</div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/aluno.js"></script>
+    <script>
+        let todasDisciplinas = [];
+
+        function renderDisciplinas(lista) {
+            const section = document.getElementById('materias');
+            if (!lista.length) {
+                section.innerHTML = '<p class="empty">Nenhuma disciplina encontrada.</p>';
+                return;
+            }
+
+            section.innerHTML = lista.map((d, i) => {
+                const icone = iconeMateria(d.materia);
+                const cor = corIcone(i);
+                return `
+            <div class="aula" style="animation-delay:${0.45 + i * 0.06}s"
+                 onclick="location.href='boletim.html'">
+                <div class="aula-icone" style="background:${cor}">${icone}</div>
+                <strong>${d.materia}</strong>
+                <span class="professor">${d.professor}</span>
+                <div class="aula-media">
+                    <span>Média</span>
+                    ${mediaChip(d.media)}
+                </div>
+            </div>
+        `;
+            }).join('');
+            if (window.feather) feather.replace();
+        }
+
+        (async () => {
+            const dados = await initPagina();
+            if (!dados) return;
+
+            // Monta lista de disciplinas a partir das notas
+            todasDisciplinas = dados.notas.map(n => ({
+                materia: n.materia,
+                professor: n.professor,
+                media: n.media,
+                nota1: n.nota1,
+                nota2: n.nota2,
+            }));
+
+            // Resumo
+            const resumo = document.getElementById('resumoDisciplinas');
+            resumo.innerHTML = `
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <div class="badge-info">Total: <span>${todasDisciplinas.length}</span> disciplina(s)</div>
+            <div class="badge-info">Sala: <span>${dados.sala || '—'}</span></div>
+        </div>
+    `;
+
+            renderDisciplinas(todasDisciplinas);
+
+            // Filtro
+            document.getElementById('filtroDisciplina').addEventListener('input', (e) => {
+                const q = e.target.value.toLowerCase();
+                const filtradas = todasDisciplinas.filter(d =>
+                    d.materia.toLowerCase().includes(q) ||
+                    d.professor.toLowerCase().includes(q)
+                );
+                renderDisciplinas(filtradas);
+            });
+        })();
+    </script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observações</title>
+    <link rel="stylesheet" href="/src/main/webapp/css/professor.css">
+    <link rel="icon" href="/src/main/webapp/img/logo.svg">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-circle">
+                    <img class="logo-img" src="/src/main/webapp/img/logo.svg" alt="">
+                </div>
+                <span class="brand-name">Insituto<span>RME</span></span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="/src/main/webapp/professor/professor.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/inicio.png" alt=""></span> <span>Painel
+                        Geral</span>
+                </a>
+                <a href="/src/main/webapp/professor/meus-alunos.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/alunos.png" alt=""></span> <span>Meus
+                        alunos</span>
+                </a>
+                <a href="/src/main/webapp/professor/notas.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/nota.png" alt=""></span> <span>Lançar Notas</span>
+                </a>
+                <a href="/src/main/webapp/professor/grade-horaria.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/grade-horaria.png" alt=""></span> <span>Grade
+                        horária</span>
+                </a>
+                <a href="/src/main/webapp/professor/observacoes.html" class="nav-link active">
+                    <span class="icon"><img src="/src/main/webapp/img/observacao.png" alt=""></span>
+                    <span>Observações</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="avatar">L</div>
+                <div class="user-meta">
+                    <span class="u-name">Prof. Lisete</span>
+                    <span class="u-status">Matemática</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content-area">
+
+            <div class="topo">
+                <h2>Observações</h2>
+
+                <div class="filtros">
+                    <button>Filtrar ▾</button>
+                    <button>Add+</button>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Buscar aluno">
+                    </div>
+                </div>
+            </div>
+
+            <div class="lista">
+
+                <div class="card">
+                    <div class="info">
+                        <p>Mariana Proque</p>
+                        <p class="turma">2°H</p>
+                        <p class="data">03-02-2026</p>
+                    </div>
+                    <p>Muita conversa durante a aula.</p>
+                </div>
+
+                <div class="card">
+                    <div class="info">
+                        <strong>Enzo Nascimento</strong>
+                        <span class="turma">2°H</span>
+                        <span class="data">03-02-2026</span>
+                    </div>
+                    <p>Esqueceu o material</p>
+                </div>
+
+                <div class="card">
+                    <div class="info">
+                        <strong>Rodrigo Bolgheroni</strong>
+                        <span class="turma">2°H</span>
+                        <span class="data">03-02-2026</span>
+                    </div>
+                    <p>Colou na prova</p>
+                </div>
+
+            </div>
+        </main>
+
+</body>
+
+</html>

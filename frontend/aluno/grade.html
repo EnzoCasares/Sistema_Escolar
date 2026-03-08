@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../img/logo.svg">
+    <link rel="stylesheet" href="../css/aluno.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <title>Grade Horária | Instituto RME</title>
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-circle">R</div>
+                <span class="brand-name">Instituto<span>RME</span></span>
+            </div>
+            <nav class="nav-menu">
+                <a href="home.html" class="nav-link">
+                    <i data-feather="home"></i>
+                    <span>Início</span>
+                </a>
+
+                <a href="disciplinas.html" class="nav-link">
+                    <i data-feather="book"></i>
+                    <span>Disciplinas</span>
+                </a>
+
+                <a href="boletim.html" class="nav-link">
+                    <i data-feather="bar-chart-2"></i>
+                    <span>Boletim</span>
+                </a>
+
+                <a href="observacoes.html" class="nav-link">
+                    <i data-feather="message-square"></i>
+                    <span>Observações</span>
+                </a>
+
+                <a href="grade.html" class="nav-link active">
+                    <i data-feather="calendar"></i>
+                    <span>Grade horária</span>
+                </a>
+            </nav>
+            <div class="sidebar-user">
+                <div class="avatar" id="avatarSidebar">?</div>
+                <div class="user-meta">
+                    <span class="u-name" id="nomeSidebar">Carregando...</span>
+                    <span class="u-status">Online</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main>
+            <div class="grade-topo">
+                <h2 class="titulo">Grade horária</h2>
+                <div class="grade-acoes">
+                    <div id="diasBtns" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+                    <div class="search-bar">
+                        <input type="text" id="filtroGrade" placeholder="Filtrar disciplina...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="lista-grade" id="listaGrade">
+                <div class="grade-card loading">Carregando grade...</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/aluno.js"></script>
+    <script>
+        const ORDEM_DIAS = ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo'];
+
+        function diaPrioridade(dia) {
+            if (!dia) return 99;
+            const d = dia.toLowerCase();
+            return ORDEM_DIAS.findIndex(x => d.includes(x.slice(0, 3)));
+        }
+
+        function capitalize(str) {
+            if (!str) return '—';
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        let todosHorarios = [];
+        let diaAtivo = 'todos';
+
+        function renderGrade(horarios) {
+            const lista = document.getElementById('listaGrade');
+            const filtro = document.getElementById('filtroGrade').value.toLowerCase();
+
+            let filtrados = horarios;
+
+            if (diaAtivo !== 'todos') {
+                filtrados = filtrados.filter(h => h.dia && h.dia.toLowerCase().includes(diaAtivo.slice(0, 3)));
+            }
+
+            if (filtro) {
+                filtrados = filtrados.filter(h =>
+                    h.materia.toLowerCase().includes(filtro) ||
+                    h.professor.toLowerCase().includes(filtro)
+                );
+            }
+
+            // Ordena por hora
+            filtrados = [...filtrados].sort((a, b) => {
+                const dp = diaPrioridade(a.dia) - diaPrioridade(b.dia);
+                if (dp !== 0) return dp;
+                return (a.hora_inicio || '').localeCompare(b.hora_inicio || '');
+            });
+
+            if (!filtrados.length) {
+                lista.innerHTML = '<p class="empty">Nenhuma aula encontrada para este filtro.</p>';
+                return;
+            }
+
+            lista.innerHTML = filtrados.map((h, i) => `
+        <div class="grade-card" style="animation-delay:${0.45 + i * 0.07}s">
+            <div class="grade-horario">
+                <span class="hora-inicio">${fmtHora(h.hora_inicio)}</span>
+                <span class="hora-sep">até</span>
+                <span class="hora-fim">${fmtHora(h.hora_fim)}</span>
+            </div>
+            <div class="grade-info">
+                <strong>${h.materia}</strong>
+                <span>${h.professor}</span>
+            </div>
+            <span class="dia-chip">${capitalize(h.dia)}</span>
+        </div>
+    `).join('');
+        }
+
+        function criarBotoiresDia(horarios) {
+            const container = document.getElementById('diasBtns');
+            const diasUnicos = [...new Set(
+                horarios.map(h => h.dia).filter(Boolean)
+            )].sort((a, b) => diaPrioridade(a) - diaPrioridade(b));
+
+            const todos = document.createElement('button');
+            todos.className = 'btn-dia';
+            todos.textContent = 'Todos';
+            todos.style.background = 'linear-gradient(135deg, var(--accent-blue), var(--accent-purple))';
+            todos.onclick = () => { diaAtivo = 'todos'; setAtivo(todos); renderGrade(todosHorarios); };
+            container.appendChild(todos);
+
+            diasUnicos.forEach(dia => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-dia';
+                btn.textContent = capitalize(dia);
+                btn.style.background = '#fff';
+                btn.style.color = 'var(--accent-blue)';
+                btn.style.border = '1px solid var(--border)';
+                btn.style.boxShadow = 'none';
+                btn.onclick = () => { diaAtivo = dia.toLowerCase(); setAtivo(btn); renderGrade(todosHorarios); };
+                container.appendChild(btn);
+            });
+        }
+
+        function setAtivo(btnAtivo) {
+            document.querySelectorAll('#diasBtns .btn-dia').forEach(b => {
+                b.style.background = '#fff';
+                b.style.color = 'var(--accent-blue)';
+                b.style.border = '1px solid var(--border)';
+                b.style.boxShadow = 'none';
+            });
+            btnAtivo.style.background = 'linear-gradient(135deg, var(--accent-blue), var(--accent-purple))';
+            btnAtivo.style.color = '#fff';
+            btnAtivo.style.border = 'none';
+            btnAtivo.style.boxShadow = '0 4px 12px rgba(67,97,238,0.3)';
+        }
+
+        (async () => {
+            const dados = await initPagina();
+            if (!dados) return;
+
+            todosHorarios = dados.horarios;
+
+            if (!todosHorarios.length) {
+                document.getElementById('listaGrade').innerHTML =
+                    '<p class="empty">Nenhum horário cadastrado.</p>';
+                return;
+            }
+
+            criarBotoiresDia(todosHorarios);
+            // Marca "Todos" como ativo inicialmente
+            const primBtn = document.querySelector('#diasBtns .btn-dia');
+            if (primBtn) setAtivo(primBtn);
+
+            renderGrade(todosHorarios);
+
+            document.getElementById('filtroGrade').addEventListener('input', () => renderGrade(todosHorarios));
+        })();
+    </script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+
+</html>
