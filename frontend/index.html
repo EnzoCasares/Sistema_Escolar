@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto RME - Primeiro Acesso</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="banner-section">
+            <div class="logo">
+                <img src="images/logo.png" alt="Instituto RME">
+                <span>Instituto RME</span>
+            </div>
+            <h1>Bem-vindo ao Instituto RME!</h1>
+            <p class="subtitle">Configure seu acesso para começar sua jornada de aprendizado.</p>
+        </div>
+        <div class="form-section">
+            <div class="form-container">
+
+                <!-- ========== PASSO 1: Informar matrícula ========== -->
+                <div id="passo1">
+                    <h2>Primeiro Acesso</h2>
+                    <p class="form-subtitle">Informe sua matrícula para começar</p>
+
+                    <div class="alert alert-error" id="erro1" style="display:none;"></div>
+
+                    <form onsubmit="validarMatricula(event)">
+                        <div class="form-group">
+                            <label for="matricula">Matrícula</label>
+                            <input type="text" id="matricula" name="matricula" required autofocus>
+                            <small style="color: #888; font-size: 12px;">Digite a matrícula fornecida pela
+                                secretaria</small>
+                        </div>
+                        <button type="submit" class="btn-submit" id="btnPasso1">Continuar</button>
+                    </form>
+
+                    <div style="margin-top: 20px; text-align: center;">
+                        <a href="login.html" style="color: #2d8659; text-decoration: none;">Já tenho cadastro</a>
+                    </div>
+                </div>
+
+                <!-- ========== PASSO 2: Criar email e senha ========== -->
+                <div id="passo2" style="display:none;">
+                    <h2>Configurar Acesso</h2>
+                    <p class="form-subtitle" id="subtituloPasso2">Crie seu email e senha</p>
+
+                    <div class="alert" id="alertMatricula"
+                        style="background-color: rgba(45, 134, 89, 0.1); border: 1px solid rgba(45, 134, 89, 0.3); color: #4ade80; margin-bottom: 20px;">
+                    </div>
+                    <div class="alert alert-error" id="erro2" style="display:none;"></div>
+
+                    <form onsubmit="criarConta(event)">
+                        <div class="form-group">
+                            <label for="email">Email Institucional</label>
+                            <input type="email" id="email" name="email" required autofocus
+                                placeholder="aluno@institutorme.com">
+                            <small style="color: #888; font-size: 12px;">Use um email válido para recuperação de
+                                senha</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input type="password" id="senha" name="senha" required placeholder="Mínimo 6 caracteres">
+                            <small style="color: #888; font-size: 12px;">Mínimo 6 caracteres</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmar_senha">Confirmar Senha</label>
+                            <input type="password" id="confirmar_senha" name="confirmar_senha" required>
+                        </div>
+                        <button type="submit" class="btn-submit" id="btnPasso2">Criar Conta</button>
+                    </form>
+
+                    <div style="margin-top: 20px; text-align: center;">
+                        <a href="#" onclick="voltarPasso1()" style="color: #2d8659; text-decoration: none;">← Alterar
+                            matrícula</a>
+                    </div>
+                </div>
+
+                <!-- ========== PASSO 3: Sucesso ========== -->
+                <div id="passo3" style="display:none; text-align:center; padding: 20px 0;">
+
+                    <div style="margin-bottom:20px;">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2" />
+                            <path d="M7 12.5L10 15.5L17 8.5" stroke="#22c55e" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+
+                    <h2>Conta criada!</h2>
+                    <p class="form-subtitle" style="margin-top: 8px;">
+                        Seu acesso foi configurado com sucesso.
+                    </p>
+
+                    <a href="login.html">
+                        <button class="btn-submit" style="margin-top: 24px;">
+                            Ir para o Login
+                        </button>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cadastro.js"></script>
+</body>
+
+</html>

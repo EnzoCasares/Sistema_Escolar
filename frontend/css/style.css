@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #0a0a0a;
+    color: #ffffff;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Banner Section - Lado Esquerdo */
+.banner-section {
+    flex: 1;
+    background: linear-gradient(135deg, #1a5f3f 0%, #2d8659 100%);
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.logo span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.banner-section h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    max-width: 450px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Form Section - Lado Direito */
+.form-section {
+    flex: 1;
+    background-color: #0a0a0a;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-container h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.form-subtitle {
+    font-size: 14px;
+    color: #888888;
+    margin-bottom: 24px;
+}
+
+.login-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    color: #888888;
+    font-size: 14px;
+}
+
+.login-link svg {
+    width: 16px;
+    height: 16px;
+}
+
+.login-link a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.login-link a:hover {
+    color: #2d8659;
+}
+
+/* Alerts */
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.alert-error {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+
+.alert-success {
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2d8659;
+    background-color: #222222;
+}
+
+.form-group input::placeholder {
+    color: #555555;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #1a5f3f 0%, #2d8659 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    margin-top: 8px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(45, 134, 89, 0.3);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .banner-section {
+        padding: 40px 30px;
+        min-height: 40vh;
+    }
+
+    .banner-section h1 {
+        font-size: 32px;
+    }
+
+    .form-section {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-section h1 {
+        font-size: 28px;
+    }
+
+    .form-container h2 {
+        font-size: 28px;
+    }
+}

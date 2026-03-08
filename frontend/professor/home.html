@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Aluno | Instituto RME</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/src/main/webapp/img/logo.svg">
+    <link rel="stylesheet" href="/src/main/webapp/css/aluno.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-circle"><img class="logo-img" src="/src/main/webapp/img/logo.svg" alt=""></div>
+                <span class="brand-name">Instituto<span>RNE</span></span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="/src/main/webapp/aluno/aluno.html" class="nav-link active">
+                    <span class="icon"><img src="/src/main/webapp/img/inicio.png" alt=""></span> Início
+                </a>
+                <a href="/src/main/webapp/aluno/disciplinas.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/disciplinas.png" alt=""></span> Disciplinas
+                </a>
+                <a href="/src/main/webapp/aluno/boletim.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/nota.png" alt=""></span> Boletim
+                </a>
+                <a href="/src/main/webapp/aluno/observacoes-alunos.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/observacao.png" alt=""></span> Observações
+                </a>
+                <a href="/src/main/webapp/aluno/grade-alunos.html" class="nav-link">
+                    <span class="icon"><img src="/src/main/webapp/img/grade-horaria.png" alt=""></span> Grade horária
+                </a>
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="avatar">RB</div>
+                <div class="user-meta">
+                    <span class="u-name">Rodrigo B.</span>
+                    <span class="u-status">Online</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <header class="main-header">
+                <div class="search-bar">
+                    <input type="text" placeholder="Pesquisar aulas, notas...">
+                </div>
+            </header>
+
+            <section class="hero-card">
+                <div class="hero-content">
+                    <h1>Olá, Rodrigo</h1>
+                    <p></p>
+                </div>
+                <div class="hero-visual">
+                </div>
+            </section>
+
+            <div class="dashboard-grid">
+
+                <div class="glass-card action-card">
+                    <div class="card-icon blue">
+                        <img class="icones" src="/src/main/webapp/img/obs.png" alt="">
+                    </div>
+                    <h3>Observações</h3>
+                    <p>Ver feedback dos professores</p>
+                </div>
+
+                <div class="glass-card action-card">
+                    <div class="card-icon purple">
+                        <img class="icones" src="/src/main/webapp/img/aula.png" alt="">
+                    </div>
+                    <h3>Aula Atual</h3>
+                    <p>Matemática - Sala 04</p>
+                </div>
+
+                <div class="glass-card action-card">
+                    <div class="card-icon green">
+                        <img class="icones" src="/src/main/webapp/img/ranking.png" alt="">
+                    </div>
+                    <h3>Ranking</h3>
+                    <p>Posição na turma</p>
+                </div>
+
+                <div class="glass-card action-card">
+                    <div class="card-icon orange">
+                        <img class="icones" src="/src/main/webapp/img/calendario.png" alt="">
+                    </div>
+                    <h3>Calendário</h3>
+                    <p>Exames finais</p>
+                </div>
+            </div>
+
+            <section class="recent-section">
+                <h2 class="sub-title">Eventos e Avisos</h2>
+                <div class="event-list">
+                    <div class="event-item">
+                        <div class="event-date">06 Fev</div>
+                        <div class="event-info">
+                            <h4>Aniversário da Escola</h4>
+                            <p>Evento comemorativo no pátio central</p>
+                        </div>
+                        <span class="tag tag-blue">Evento</span>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date">09 Fev</div>
+                        <div class="event-info">
+                            <h4>Escola da Família</h4>
+                            <p>Workshop para pais e alunos</p>
+                        </div>
+                        <span class="tag tag-purple">Social</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+
+</html>
