@@ -29,10 +29,10 @@ def criar_observacao(db:Session, materia:int, professor: int , aluno: int, texto
 
 
 def deletar_observacao(db: Session, id_observacao: int) -> Observacao|None:
-    observacao = db.query(Observacao).filter(Observacao.id == id_observacao).first()
+    observacao = db.get(Observacao,id_observacao)
     
     #verificação so pra ter
-    if isinstance(observacao,None):
+    if observacao is None:
         raise HTTPException(status_code= 400, detail="Não foi econtrado a observação")
     
     db.delete(observacao)
@@ -44,7 +44,7 @@ def deletar_observacao(db: Session, id_observacao: int) -> Observacao|None:
 def alterar_observacao(db:Session,observacao_id: int, texto = str) -> Observacao|None:
     observacao =  db.query(Observacao).filter(Observacao.id == observacao_id).first()
     
-    if isinstance(observacao,None):
+    if observacao is None:
         raise HTTPException(status_code=400,detail="Não foi encontrada observação")
     
     observacao.comentario = texto
