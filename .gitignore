@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -38,3 +39,7 @@ build/
 .DS_Store
 
 src/main/resources/.env
+=======
+.env
+seed.py
+>>>>>>> 9830eeaf30bcfe024577b8a510b83cd522c16d00

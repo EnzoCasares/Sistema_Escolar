@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Aluno | Instituto RME</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/aluno.css">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-circle">R</div>
+            <span class="brand-name">Instituto<span>RME</span></span>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="home.html" class="nav-link active">
+                <i data-feather="home"></i>
+                <span>Início</span>
+            </a>
+
+            <a href="disciplinas.html" class="nav-link">
+                <i data-feather="book"></i>
+                <span>Disciplinas</span>
+            </a>
+
+            <a href="boletim.html" class="nav-link">
+                <i data-feather="bar-chart-2"></i>
+                <span>Boletim</span>
+            </a>
+
+            <a href="observacoes.html" class="nav-link">
+                <i data-feather="message-square"></i>
+                <span>Observações</span>
+            </a>
+
+            <a href="grade.html" class="nav-link">
+                <i data-feather="calendar"></i>
+                <span>Grade horária</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-user">
+            <div class="avatar" id="avatarSidebar">?</div>
+            <div class="user-meta">
+                <span class="u-name" id="nomeSidebar">Carregando...</span>
+                <span class="u-status">Online</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="content-area">
+
+        <header class="main-header">
+
+            <div class="search-bar">
+                <input type="text" placeholder="Pesquisar aulas, notas...">
+            </div>
+
+            <div class="header-actions">
+                <div class="badge-info">
+                    Sala: <span id="salaBadge">—</span>
+                </div>
+
+                <div class="badge-info">
+                    Matrícula: <span id="matriculaBadge">—</span>
+                </div>
+
+                <button class="btn-logout" onclick="logout()">
+                    Sair
+                </button>
+            </div>
+
+        </header>
+
+        <!-- Hero -->
+        <section class="hero-card">
+
+            <div class="hero-content">
+                <h1 id="heroNome">Olá!</h1>
+                <p id="heroEmail">Carregando seus dados...</p>
+            </div>
+
+            <div class="hero-stats" id="heroStats">
+
+                <div class="stat-box">
+                    <div class="val" id="statDisciplinas">—</div>
+                    <div class="lbl">Disciplinas</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="val" id="statMedia">—</div>
+                    <div class="lbl">Média geral</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="val" id="statObs">—</div>
+                    <div class="lbl">Observações</div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Dashboard -->
+        <div class="dashboard-grid">
+
+            <div class="glass-card" onclick="location.href='observacoes.html'">
+                <div class="card-icon blue">
+                    <i data-feather="message-circle"></i>
+                </div>
+                <h3>Observações</h3>
+                <p id="cardObsTexto">Ver feedback dos professores</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-icon purple">
+                    <i data-feather="clock"></i>
+                </div>
+                <h3>Aula Atual</h3>
+                <p id="cardAulaAtual">Verificando grade...</p>
+            </div>
+
+            <div class="glass-card" onclick="location.href='boletim.html'">
+                <div class="card-icon green">
+                    <i data-feather="award"></i>
+                </div>
+                <h3>Melhor nota</h3>
+                <p id="cardMelhorNota">—</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-icon orange">
+                    <i data-feather="calendar"></i>
+                </div>
+                <h3>Calendário</h3>
+                <p>Exames finais</p>
+            </div>
+
+        </div>
+
+        <!-- Notas + Observações -->
+        <div class="sections-row">
+
+            <!-- Notas -->
+            <div class="section-card">
+
+                <div class="section-title">
+                    <i data-feather="bar-chart"></i>
+                    Boletim
+                </div>
+
+                <div id="notasContainer">
+                    <p class="loading">Carregando notas...</p>
+                </div>
+
+            </div>
+
+            <!-- Observações -->
+            <div class="section-card">
+
+                <div class="section-title">
+                    <i data-feather="message-square"></i>
+                    Observações dos professores
+                </div>
+
+                <div id="obsContainer">
+                    <p class="loading">Carregando observações...</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Grade -->
+        <div class="section-card">
+
+            <div class="section-title">
+                <i data-feather="calendar"></i>
+                Grade horária
+            </div>
+
+            <div id="gradeContainer">
+                <p class="loading">Carregando grade...</p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/aluno.js"></script>
+
+    <script>
+        carregarDados();
+        feather.replace();
+    </script>
+
+</body>
+
+</html>

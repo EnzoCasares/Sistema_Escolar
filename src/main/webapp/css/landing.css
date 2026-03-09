@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+*{
+    margin: 0;
+    padding:0;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    border-bottom: 2px solid #ddd;
+}
+
+.menu{
+    display: flex;
+    gap: 30px;
+}
+
+.acoes{
+    display: flex;
+    gap: 15px;
+}
+
+.btn-matricula{
+    background: #2ea66a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#infos{
+    text-align: start;
+}
+
+#infos p{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+#infos h1{
+    font-size: 64px;
+    line-height: 1.0;
+}
+
+h2{
+    font-size: 40px;
+    margin-top: 100px;
+}
+
+a{
+    text-decoration: none;
+    color: gray;
+}
+
+span, .school-name{
+    color: #248859;
+}
+
+#inicio{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 60px;
+    background: #f7f7f7;
+}
+
+.secoes{
+    text-align: center;
+}
+
+#sobre{
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+#sobre p{
+    text-align: left;
+    margin-top: 20px;
+}
+
+#diferenciais{
+    background: #f7f7f7;
+    padding: 30px 60px;
+}
+
+.list-cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 80px 20px;
+}
+
+.card{
+    border: 2px solid #ddd;
+    background: #f5f7f6;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.list-cards h3, .card p{
+    text-align: left;
+}
+
+.icon{
+    width: 50px;
+    height: 50px;
+    background: #dff5ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 22px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.card:hover .icon{
+    background: #248859;
+}
+
+#contato{
+    padding: 30px 60px;
+}
+
+footer{
+    background-color: #2aa36b;
+    padding: 50px;
+    color: white;
+    text-align: center;
+}

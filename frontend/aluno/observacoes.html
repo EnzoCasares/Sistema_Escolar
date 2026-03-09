@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../img/logo.svg">
+    <link rel="stylesheet" href="../css/aluno.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <title>Observações | Instituto RME</title>
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-circle">R</div>
+                <span class="brand-name">Instituto<span>RME</span></span>
+            </div>
+            <nav class="nav-menu">
+                <a href="home.html" class="nav-link">
+                    <i data-feather="home"></i>
+                    <span>Início</span>
+                </a>
+
+                <a href="disciplinas.html" class="nav-link">
+                    <i data-feather="book"></i>
+                    <span>Disciplinas</span>
+                </a>
+
+                <a href="boletim.html" class="nav-link">
+                    <i data-feather="bar-chart-2"></i>
+                    <span>Boletim</span>
+                </a>
+
+                <a href="observacoes.html" class="nav-link active">
+                    <i data-feather="message-square"></i>
+                    <span>Observações</span>
+                </a>
+
+                <a href="grade.html" class="nav-link">
+                    <i data-feather="calendar"></i>
+                    <span>Grade horária</span>
+                </a>
+            </nav>
+            <div class="sidebar-user">
+                <div class="avatar" id="avatarSidebar">?</div>
+                <div class="user-meta">
+                    <span class="u-name" id="nomeSidebar">Carregando...</span>
+                    <span class="u-status">Online</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main>
+            <div class="page-header">
+                <h2 class="titulo">Observações</h2>
+                <div class="search-bar">
+                    <input type="text" id="filtroObs" placeholder="Filtrar por disciplina ou professor...">
+                </div>
+            </div>
+
+            <div id="contadorObs" style="margin-bottom:20px;"></div>
+            <div class="lista-observacoes" id="listaObs">
+                <div class="obs-card loading">Carregando observações...</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/aluno.js"></script>
+    <script>
+        let todasObs = [];
+
+        function renderObs(lista) {
+            const container = document.getElementById('listaObs');
+            if (!lista.length) {
+                container.innerHTML = '<p class="empty">Nenhuma observação encontrada.</p>';
+                return;
+            }
+
+            container.innerHTML = lista.map((o, i) => {
+                // Classifica tag baseada em palavras-chave (heurística simples)
+                const texto = (o.comentario || '').toLowerCase();
+                let tag = 'neutra', tagLabel = 'Informativo';
+                const negativas = ['conversa', 'colou', 'faltou', 'esqueceu', 'agressiv', 'indiscipl', 'atrasado', 'problema', 'bagunça', 'perturbou'];
+                const positivas = ['parabéns', 'excelente', 'ótimo', 'destaque', 'dedicado', 'participou', 'colabor', 'ajudou', 'melhoria'];
+                if (negativas.some(p => texto.includes(p))) { tag = 'negativa'; tagLabel = 'Atenção'; }
+                else if (positivas.some(p => texto.includes(p))) { tag = 'positiva'; tagLabel = 'Positivo'; }
+
+                return `
+            <div class="obs-card" style="animation-delay:${0.45 + i * 0.08}s">
+                <div class="obs-card-body">
+                    <div class="obs-card-titulo">
+                        <strong>${o.materia}</strong>
+                        <span class="obs-tag ${tag}">${tagLabel}</span>
+                    </div>
+                    <p class="obs-card-prof">Professor(a): ${o.professor}</p>
+                    <p class="obs-card-texto">${o.comentario || 'Sem descrição.'}</p>
+                </div>
+                <span class="obs-card-data">${o.data || '—'}</span>
+            </div>
+        `;
+            }).join('');
+        }
+
+        (async () => {
+            const dados = await initPagina();
+            if (!dados) return;
+
+            todasObs = dados.observacoes;
+
+            const contador = document.getElementById('contadorObs');
+            contador.innerHTML = todasObs.length
+                ? `<div class="badge-info">Total: <span>${todasObs.length}</span> observação(ões)</div>`
+                : '';
+
+            renderObs(todasObs);
+
+            // Filtro por digitação
+            document.getElementById('filtroObs').addEventListener('input', (e) => {
+                const q = e.target.value.toLowerCase();
+                const filtradas = todasObs.filter(o =>
+                    o.materia.toLowerCase().includes(q) ||
+                    o.professor.toLowerCase().includes(q) ||
+                    (o.comentario || '').toLowerCase().includes(q)
+                );
+                renderObs(filtradas);
+            });
+        })();
+    </script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+
+</html>
