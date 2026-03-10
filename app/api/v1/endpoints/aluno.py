@@ -28,7 +28,7 @@ def get_aluno_me(usuario_id: int = Depends(get_usuario_id), db: Session = Depend
 
     aluno: Aluno = usuario.aluno
 
-    # Busca notas diretamente pela tabela (garante que carrega independente do lazy load)
+    
     notas_db = db.query(Nota).filter(Nota.aluno_id == aluno.id).all()
     notas = []
     for n in notas_db:
@@ -43,7 +43,7 @@ def get_aluno_me(usuario_id: int = Depends(get_usuario_id), db: Session = Depend
             "media":     float(n.media) if n.media is not None else None,
         })
 
-    # Busca observações diretamente
+    
     obs_db = db.query(Observacao).filter(Observacao.aluno_id == aluno.id).all()
     observacoes = []
     for o in obs_db:
@@ -56,7 +56,7 @@ def get_aluno_me(usuario_id: int = Depends(get_usuario_id), db: Session = Depend
             "comentario": o.comentario,
         })
 
-    # Horários pela sala
+    
     horarios = []
     if aluno.sala:
         for h in aluno.sala.horarios:
@@ -82,12 +82,12 @@ def get_aluno_me(usuario_id: int = Depends(get_usuario_id), db: Session = Depend
     }
 
 
-# ──────────────────────────────────────────────────────────
-# DEBUG — GET /api/v1/aluno/debug
-# Mostra o que existe no banco para o aluno autenticado.
-# Use para verificar se os dados estão inseridos corretamente.
-# Remova ou restrinja em produção.
-# ──────────────────────────────────────────────────────────
+
+
+
+
+
+
 @router.get("/debug")
 def debug_aluno(usuario_id: int = Depends(get_usuario_id), db: Session = Depends(get_db)):
     usuario = db.query(Usuario).filter(Usuario.id == usuario_id).first()

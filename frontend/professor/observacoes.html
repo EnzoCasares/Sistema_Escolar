@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Observações</title>
-    <link rel="stylesheet" href="/src/main/webapp/css/professor.css">
-    <link rel="icon" href="/src/main/webapp/img/logo.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/professor.css">
+
+
+    <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
 <body>
@@ -15,37 +18,38 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="logo-circle">
-                    <img class="logo-img" src="/src/main/webapp/img/logo.svg" alt="">
+                    <img class="logo-img" src="../images/logo.svg" alt="Instituto RME">
                 </div>
-                <span class="brand-name">Insituto<span>RME</span></span>
+                <span class="brand-name">Instituto<span>RME</span></span>
             </div>
 
             <nav class="nav-menu">
-                <a href="/src/main/webapp/professor/professor.html" class="nav-link">
-                    <span class="icon"><img src="/src/main/webapp/img/inicio.png" alt=""></span> <span>Painel
-                        Geral</span>
+                <a href="home.html" class="nav-link">
+                    <i data-feather="home"></i>
+                    <span>Painel Geral</span>
                 </a>
-                <a href="/src/main/webapp/professor/meus-alunos.html" class="nav-link">
-                    <span class="icon"><img src="/src/main/webapp/img/alunos.png" alt=""></span> <span>Meus
-                        alunos</span>
+                <a href="../professor/meus-alunos.html" class="nav-link">
+                    <i data-feather="users"></i>
+                    <span>Meus alunos</span>
                 </a>
-                <a href="/src/main/webapp/professor/notas.html" class="nav-link">
-                    <span class="icon"><img src="/src/main/webapp/img/nota.png" alt=""></span> <span>Lançar Notas</span>
+                <a href="../professor/notas.html" class="nav-link">
+                    <i data-feather="edit-3"></i>
+                    <span>Lançar Notas</span>
                 </a>
-                <a href="/src/main/webapp/professor/grade-horaria.html" class="nav-link">
-                    <span class="icon"><img src="/src/main/webapp/img/grade-horaria.png" alt=""></span> <span>Grade
-                        horária</span>
+                <a href="../professor/grade-horaria.html" class="nav-link">
+                    <i data-feather="calendar"></i>
+                    <span>Grade horária</span>
                 </a>
-                <a href="/src/main/webapp/professor/observacoes.html" class="nav-link active">
-                    <span class="icon"><img src="/src/main/webapp/img/observacao.png" alt=""></span>
+                <a href="../professor/observacoes.html" class="nav-link active">
+                    <i data-feather="message-square"></i>
                     <span>Observações</span>
                 </a>
             </nav>
 
             <div class="sidebar-user">
-                <div class="avatar">L</div>
+                <div class="avatar" id="avatarSidebar">L</div>
                 <div class="user-meta">
-                    <span class="u-name">Prof. Lisete</span>
+                    <span class="u-name" id="nomeSidebar">Prof. Lisete</span>
                     <span class="u-status">Matemática</span>
                 </div>
             </div>
@@ -53,50 +57,100 @@
 
         <main class="content-area">
 
-            <div class="topo">
-                <h2>Observações</h2>
-
-                <div class="filtros">
-                    <button>Filtrar ▾</button>
-                    <button>Add+</button>
-                    <div class="search-bar">
-                        <input type="text" placeholder="Buscar aluno">
-                    </div>
+            <div class="page-header">
+                <h2 class="titulo">Observações</h2>
+                <div class="search-bar">
+                    <button class="btn-primary" onclick="abrirModalObservacao()">+ Nova observação</button>
+                    <input type="text" id="filtroObs" placeholder="Filtrar por aluno ou matéria...">
                 </div>
             </div>
 
-            <div class="lista">
+            <div id="contadorObs" style="margin-bottom:20px;"></div>
+            <div class="lista-observacoes" id="listaObs">
 
-                <div class="card">
-                    <div class="info">
-                        <p>Mariana Proque</p>
-                        <p class="turma">2°H</p>
-                        <p class="data">03-02-2026</p>
-                    </div>
-                    <p>Muita conversa durante a aula.</p>
-                </div>
-
-                <div class="card">
-                    <div class="info">
-                        <strong>Enzo Nascimento</strong>
-                        <span class="turma">2°H</span>
-                        <span class="data">03-02-2026</span>
-                    </div>
-                    <p>Esqueceu o material</p>
-                </div>
-
-                <div class="card">
-                    <div class="info">
-                        <strong>Rodrigo Bolgheroni</strong>
-                        <span class="turma">2°H</span>
-                        <span class="data">03-02-2026</span>
-                    </div>
-                    <p>Colou na prova</p>
-                </div>
+                <div class="obs-card loading" style="text-align:center; padding: 2rem;">Carregando observações...</div>
 
             </div>
         </main>
+    </div>
 
+
+    <div id="modalObservacao" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nova Observação</h3>
+                <button class="modal-close" onclick="fecharModalObservacao()">&times;</button>
+            </div>
+
+            <form id="formObservacao" onsubmit="iniciarSalvarObservacao(event)">
+                <div class="form-field">
+                    <label>Matéria</label>
+                    <select id="obsSelectMateria" required>
+                        <option value="">Carregando...</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label>Sala/Turma</label>
+                    <select id="obsSelectSala" required onchange="obsAoMudarSala(this.value)">
+                        <option value="">Carregando...</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label>Aluno</label>
+                    <select id="obsSelectAluno" required>
+                        <option value="">Selecione a sala primeiro</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label>Tipo de Observação</label>
+                    <select id="obsTipo" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="Comportamento">Comportamento</option>
+                        <option value="Desempenho">Desempenho</option>
+                        <option value="Frequência">Frequência</option>
+                        <option value="Aviso">Aviso</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label>Observação</label>
+                    <textarea id="obsComentario" required rows="4"
+                        placeholder="Descreva a observação sobre o aluno..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="fecharModalObservacao()">Cancelar</button>
+                    <button type="submit" id="btnSalvarObs" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="modalConfirmacao" class="modal-overlay">
+        <div class="modal-content modal-confirm">
+            <div class="confirm-icon" id="confirmIcon">⚠️</div>
+            <h3 id="confirmTitulo">Confirmar ação</h3>
+            <p id="confirmMensagem">Tem certeza?</p>
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" id="btnConfirmCancelar">Cancelar</button>
+                <button type="button" class="btn-primary" id="btnConfirmOk">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="../js/professor.js"></script>
+    <script>
+        renderObservacoes();
+        feather.replace();
+    </script>
 </body>
 
 </html>

@@ -1,13 +1,8 @@
-/* ==============================================
-   aluno.js — JS compartilhado do portal do aluno
-   Cobre: home, boletim, observações, grade, disciplinas
-=============================================== */
+
 
 const API_BASE = '/api/v1';
 
-/* ─────────────────────────────
-   AUTH
-───────────────────────────── */
+
 function getToken() {
     const token = localStorage.getItem('token');
     if (!token) { window.location.href = '/login.html'; return null; }
@@ -19,9 +14,7 @@ function logout() {
     window.location.href = '/login.html';
 }
 
-/* ─────────────────────────────
-   FETCH AUTENTICADO
-───────────────────────────── */
+
 async function apiFetch(path) {
     const token = getToken();
     if (!token) return null;
@@ -33,9 +26,7 @@ async function apiFetch(path) {
     return res.json();
 }
 
-/* ─────────────────────────────
-   SIDEBAR — preenche avatar e nome
-───────────────────────────── */
+
 function preencherSidebar(dados) {
     const iniciais = dados.nome
         .split(' ')
@@ -50,11 +41,9 @@ function preencherSidebar(dados) {
     if (nomeEl) nomeEl.textContent = dados.nome.split(' ')[0];
 }
 
-/* ─────────────────────────────
-   HELPERS VISUAIS
-───────────────────────────── */
 
-/** Chip colorido de média */
+
+
 function mediaChip(media) {
     if (media === null || media === undefined)
         return '<span style="color:#94a3b8">—</span>';
@@ -63,19 +52,19 @@ function mediaChip(media) {
     return `<span class="media-chip ${cls}">${v.toFixed(1)}</span>`;
 }
 
-/** Formata "HH:MM:SS" → "HH:MM" */
+
 function fmtHora(h) {
     if (!h) return '—';
     return String(h).slice(0, 5);
 }
 
-/** Capitaliza primeira letra */
+
 function capitalize(str) {
     if (!str) return '—';
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-/** Detecta aula em andamento agora */
+
 function aulaAtual(horarios) {
     const dias = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
     const hoje = dias[new Date().getDay()];
@@ -92,7 +81,7 @@ function aulaAtual(horarios) {
         : 'Sem aula agora';
 }
 
-/** Ícone feather por nome de matéria */
+
 const _ICONES = {
     'matemática': '<i data-feather="pie-chart"></i>', 'mat': '<i data-feather="pie-chart"></i>',
     'português': '<i data-feather="book-open"></i>', 'port': '<i data-feather="book-open"></i>',
@@ -121,7 +110,7 @@ function iconeMateria(nome) {
 const _CORES = ['#e0e7ff', '#f3e8ff', '#dcfce7', '#ffedd5', '#fef9c3', '#fee2e2', '#e0f2fe'];
 function corIcone(i) { return _CORES[i % _CORES.length]; }
 
-/** Tag de observação baseada em palavras-chave */
+
 function tagObs(comentario) {
     const txt = (comentario || '').toLowerCase();
     const neg = ['conversa', 'colou', 'faltou', 'esqueceu', 'agressiv', 'indiscipl', 'atrasado', 'bagunça', 'perturbou'];
@@ -131,9 +120,7 @@ function tagObs(comentario) {
     return { cls: 'neutra', label: 'Informativo' };
 }
 
-/* ─────────────────────────────
-   HOME — renderizações
-───────────────────────────── */
+
 function renderNotas(notas) {
     const el = document.getElementById('notasContainer');
     if (!el) return;
@@ -221,9 +208,7 @@ function renderGradeHome(horarios) {
         </table>`;
 }
 
-/* ─────────────────────────────
-   HOME — carregamento principal
-───────────────────────────── */
+
 async function carregarDados() {
     const token = getToken();
     if (!token) return;
@@ -232,22 +217,22 @@ async function carregarDados() {
         const d = await apiFetch('/aluno/me');
         if (!d) return;
 
-        // Sidebar
+        
         preencherSidebar(d);
 
-        // Header badges
+        
         const salaBadge = document.getElementById('salaBadge');
         const matriculaBadge = document.getElementById('matriculaBadge');
         if (salaBadge) salaBadge.textContent = d.sala || '—';
         if (matriculaBadge) matriculaBadge.textContent = d.matricula;
 
-        // Hero
+        
         const heroNome = document.getElementById('heroNome');
         const heroEmail = document.getElementById('heroEmail');
         if (heroNome) heroNome.textContent = `Olá, ${d.nome.split(' ')[0]}!`;
         if (heroEmail) heroEmail.textContent = d.email;
 
-        // Stats
+        
         const medias = d.notas.map(n => n.media).filter(m => m !== null);
         const mediaGeral = medias.length
             ? (medias.reduce((a, b) => a + b, 0) / medias.length).toFixed(1)
@@ -258,7 +243,7 @@ async function carregarDados() {
         setEl('statMedia', mediaGeral);
         setEl('statObs', d.observacoes.length);
 
-        // Cards rápidos
+        
         setEl('cardObsTexto', d.observacoes.length
             ? `${d.observacoes.length} observação(ões) registrada(s)`
             : 'Nenhuma observação');
@@ -272,7 +257,7 @@ async function carregarDados() {
             ? `${melhor.materia}: ${parseFloat(melhor.media).toFixed(1)}`
             : 'Sem notas');
 
-        // Seções da home
+        
         renderNotas(d.notas);
         renderObsHome(d.observacoes);
         renderGradeHome(d.horarios);

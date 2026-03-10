@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/professor.css">
+
+
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-circle">
+                    <img class="logo-img" src="../images/logo.svg" alt="Instituto RME">
+                </div>
+                <span class="brand-name">Instituto<span>RME</span></span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="home.html" class="nav-link">
+                    <i data-feather="home"></i>
+                    <span>Painel Geral</span>
+                </a>
+                <a href="../professor/meus-alunos.html" class="nav-link active">
+                    <i data-feather="users"></i>
+                    <span>Meus alunos</span>
+                </a>
+                <a href="../professor/notas.html" class="nav-link">
+                    <i data-feather="edit-3"></i>
+                    <span>Lançar Notas</span>
+                </a>
+                <a href="../professor/grade-horaria.html" class="nav-link">
+                    <i data-feather="calendar"></i>
+                    <span>Grade horária</span>
+                </a>
+                <a href="../professor/observacoes.html" class="nav-link">
+                    <i data-feather="message-square"></i>
+                    <span>Observações</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="avatar" id="avatarSidebar">L</div>
+                <div class="user-meta">
+                    <span class="u-name" id="nomeSidebar">Prof. Lisete</span>
+                    <span class="u-status">Matemática</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content-area">
+
+
+            <div class="page-header">
+                <h2 class="titulo">Alunos</h2>
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar aluno ou turma...">
+                </div>
+            </div>
+
+
+            <div class="tabela-container">
+                <div class="tabela-scroll">
+                    <table>
+                        <thead class="titulos-tabela">
+                            <tr>
+                                <th>Matrícula</th>
+                                <th>Nome</th>
+                                <th>Matéria</th>
+                                <th>Período</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td colspan="6" class="loading" style="text-align:center; padding: 2rem;">Carregando
+                                    alunos...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+    </main>
+    </div>
+
+    <script src="../js/professor.js"></script>
+    <script>
+        renderMeusAlunos();
+        feather.replace();
+    </script>
+</body>
+
+</html>

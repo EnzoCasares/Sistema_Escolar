@@ -15,7 +15,7 @@ def validar_matricula(db: Session, matricula: str):
         return {"valido": False, "mensagem": "Matrícula não encontrada."}
     if aluno.usuario_id is not None:
         return {"valido": False, "mensagem": "Esta matrícula já possui cadastro. Faça login."}
-    # Busca nome se já tiver usuário vinculado (não deve ter, mas garante)
+    
     nome = aluno.usuario.nome if aluno.usuario else "Aluno"
     return {"valido": True, "nome": nome, "matricula": matricula}
 
@@ -34,11 +34,11 @@ def criar_credenciais(db: Session, dados: CriarCredenciais):
     if email_existente:
         raise HTTPException(status_code=400, detail="Este e-mail já está em uso.")
 
-    # Cria usuário
+    
     usuario = Usuario(
         email=dados.email,
         senha=hash_senha(dados.senha),
-        nome=f"Aluno {dados.matricula}",  # nome pode ser atualizado depois
+        nome=f"Aluno {dados.matricula}",  
     )
     db.add(usuario)
     db.flush()
@@ -54,7 +54,7 @@ def autenticar_usuario(db: Session, email: str, senha: str):
     if not usuario or not verificar_senha(senha, usuario.senha):
         raise HTTPException(status_code=401, detail="Email ou senha inválidos.")
 
-    # Detecta perfil
+    
     perfil = "aluno"
     if usuario.administrador:
         perfil = "administrador"

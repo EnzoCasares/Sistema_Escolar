@@ -8,8 +8,10 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/aluno.css">
+    <link rel="stylesheet" href="../css/chatbot.css">
 
-    <!-- Feather Icons -->
+
+    <link rel="shortcut icon" href="../images/logo.svg">
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
@@ -17,7 +19,9 @@
 
     <aside class="sidebar">
         <div class="sidebar-header">
-            <div class="logo-circle">R</div>
+            <div class="logo-circle">
+                <img class="logo-img" src="../images/logo.svg" alt="Instituto RME">
+            </div>
             <span class="brand-name">Instituto<span>RME</span></span>
         </div>
 
@@ -81,7 +85,7 @@
 
         </header>
 
-        <!-- Hero -->
+
         <section class="hero-card">
 
             <div class="hero-content">
@@ -110,7 +114,7 @@
 
         </section>
 
-        <!-- Dashboard -->
+
         <div class="dashboard-grid">
 
             <div class="glass-card" onclick="location.href='observacoes.html'">
@@ -147,10 +151,10 @@
 
         </div>
 
-        <!-- Notas + Observações -->
+
         <div class="sections-row">
 
-            <!-- Notas -->
+
             <div class="section-card">
 
                 <div class="section-title">
@@ -164,7 +168,7 @@
 
             </div>
 
-            <!-- Observações -->
+
             <div class="section-card">
 
                 <div class="section-title">
@@ -180,7 +184,7 @@
 
         </div>
 
-        <!-- Grade -->
+
         <div class="section-card">
 
             <div class="section-title">
@@ -194,14 +198,14 @@
 
         </div>
 
-    </main>
 
-    <script src="../js/aluno.js"></script>
+        <script src="../js/aluno.js"></script>
+        <script src="../js/chatbot.js"></script>
 
-    <script>
-        carregarDados();
-        feather.replace();
-    </script>
+        <script>
+            carregarDados();
+            feather.replace();
+        </script>
 
 </body>
 

@@ -3,7 +3,7 @@ from typing import Optional
 from datetime import date
 
 
-# ── Usuario 
+
 class UsuarioBase(BaseModel):
     email: EmailStr
     nome: str
@@ -16,7 +16,7 @@ class UsuarioOut(UsuarioBase):
     model_config = {"from_attributes": True}
 
 
-# ── Aluno
+
 class AlunoOut(BaseModel):
     id: int
     matricula: str
@@ -26,7 +26,7 @@ class AlunoOut(BaseModel):
     model_config = {"from_attributes": True}
 
 
-# ── Cadastro (primeiro acesso)
+
 class ValidarMatricula(BaseModel):
     matricula: str
 
@@ -48,7 +48,7 @@ class CadastroResponse(BaseModel):
     usuario: Optional[UsuarioOut] = None
 
 
-# ── Auth
+
 class LoginRequest(BaseModel):
     email: EmailStr
     senha: str

@@ -1,6 +1,4 @@
-/* =========================
-   RESET
-========================= */
+
 *,
 *::before,
 *::after {
@@ -9,45 +7,41 @@
     padding: 0;
 }
 
-/* =========================
-   VARIÁVEIS
-========================= */
+
 :root {
     --bg-app: #f5f7fb;
 
-    /* azul principal mais elegante */
+    
     --accent-blue: #3a6ea5;
     --accent-blue-light: #5f8fc2;
     --accent-blue-dark: #2b547e;
 
-    /* cores secundárias */
+    
     --accent-amber: #0b7cf5;
     --accent-green: #22c55e;
 
-    /* textos */
+    
     --text-main: #1f2933;
     --text-sub: #6b7280;
 
-    /* cards */
+    
     --card-bg: #ffffff;
     --border: #e5e7eb;
 
-    /* sombras */
+    
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.08);
 
     --menu-width: 240px;
 
-    /* sidebar */
+    
     --sidebar-bg: #2b547e;
     --sidebar-text: #e5e7eb;
     --sidebar-active-bg: #3a6ea5;
     --sidebar-accent: #ffffff;
 }
 
-/* =========================
-   KEYFRAMES
-========================= */
+
 @keyframes fadeUp {
     from {
         opacity: 0;
@@ -96,9 +90,7 @@
     }
 }
 
-/* =========================
-   BODY
-========================= */
+
 body {
     font-family: 'Inter', sans-serif;
     background: var(--bg-app);
@@ -107,9 +99,7 @@ body {
     display: flex;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
+
 .sidebar {
     width: var(--menu-width);
     background: var(--sidebar-bg);
@@ -282,9 +272,7 @@ body {
     color: #71717a;
 }
 
-/* =========================
-   LAYOUT GERAL
-========================= */
+
 .app-container {
     display: flex;
     min-height: 100vh;
@@ -306,9 +294,7 @@ body {
     max-width: calc(100vw - var(--menu-width));
 }
 
-/* =========================
-   HEADER (home)
-========================= */
+
 .main-header {
     display: flex;
     justify-content: space-between;
@@ -368,9 +354,7 @@ body {
     font-weight: 600;
 }
 
-/* =========================
-   HERO (home)
-========================= */
+
 
 .hero-card {
     background: var(--sidebar-bg);
@@ -467,9 +451,7 @@ body {
     margin-top: 2px;
 }
 
-/* =========================
-   GRID DE CARDS (home)
-========================= */
+
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -546,9 +528,7 @@ body {
     color: var(--text-sub);
 }
 
-/* =========================
-   SEÇÕES (home)
-========================= */
+
 .sections-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -589,9 +569,7 @@ body {
     animation: dotPulse 2.5s ease-in-out infinite;
 }
 
-/* =========================
-   TABELA NOTAS (home widget)
-========================= */
+
 .notas-table {
     width: 100%;
     border-collapse: collapse;
@@ -627,9 +605,7 @@ body {
     text-align: right;
 }
 
-/* =========================
-   CHIPS DE MÉDIA
-========================= */
+
 .media-chip {
     display: inline-block;
     padding: 3px 10px;
@@ -658,9 +634,7 @@ body {
     color: #991b1b;
 }
 
-/* =========================
-   OBS WIDGET (home)
-========================= */
+
 .obs-list {
     display: flex;
     flex-direction: column;
@@ -703,9 +677,7 @@ body {
     line-height: 1.5;
 }
 
-/* =========================
-   GRADE WIDGET (home)
-========================= */
+
 .horario-table {
     width: 100%;
     border-collapse: collapse;
@@ -755,9 +727,7 @@ body {
     transform: scale(1.05);
 }
 
-/* =========================
-   LOGOUT
-========================= */
+
 .btn-logout {
     background: none;
     border: 1px solid var(--border);
@@ -781,9 +751,7 @@ body {
     transform: scale(0.97);
 }
 
-/* =========================
-   LOADING / EMPTY
-========================= */
+
 .loading {
     color: var(--text-sub);
     font-size: 13px;
@@ -799,9 +767,7 @@ body {
     padding: 16px;
 }
 
-/* ==========================================
-   PÁGINAS INTERNAS — título com underline
-========================================== */
+
 .titulo {
     font-size: 21px;
     font-weight: 700;
@@ -832,9 +798,7 @@ body {
     gap: 12px;
 }
 
-/* ==========================================
-   BOLETIM — tabela enriquecida
-========================================== */
+
 .tabela-container {
     background: var(--card-bg);
     border: 1px solid var(--border);
@@ -898,9 +862,7 @@ body {
     margin-top: 2px;
 }
 
-/* ==========================================
-   OBSERVAÇÕES — página dedicada
-========================================== */
+
 .lista-observacoes {
     display: flex;
     flex-direction: column;
@@ -991,9 +953,7 @@ body {
     color: var(--accent-amber);
 }
 
-/* ==========================================
-   GRADE HORÁRIA — página dedicada
-========================================== */
+
 .grade-topo {
     display: flex;
     justify-content: space-between;
@@ -1118,9 +1078,7 @@ body {
     flex-shrink: 0;
 }
 
-/* ==========================================
-   DISCIPLINAS — grid de cards
-========================================== */
+
 #materias {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -1195,9 +1153,7 @@ body {
     color: var(--text-sub);
 }
 
-/* =========================
-   RESPONSIVO
-========================= */
+
 @media (max-width: 900px) {
     .sidebar {
         display: none;

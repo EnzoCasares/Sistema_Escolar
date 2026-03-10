@@ -15,7 +15,7 @@ body {
     min-height: 100vh;
 }
 
-/* Banner Section - Lado Esquerdo */
+
 .banner-section {
     flex: 1;
     background: linear-gradient(135deg, #1a5f3f 0%, #2d8659 100%);
@@ -77,7 +77,7 @@ body {
     z-index: 1;
 }
 
-/* Form Section - Lado Direito */
+
 .form-section {
     flex: 1;
     background-color: #0a0a0a;
@@ -130,7 +130,7 @@ body {
     color: #2d8659;
 }
 
-/* Alerts */
+
 .alert {
     padding: 12px 16px;
     border-radius: 8px;
@@ -150,7 +150,7 @@ body {
     color: #4ade80;
 }
 
-/* Form Styles */
+
 .form-group {
     margin-bottom: 20px;
 }
@@ -213,7 +213,7 @@ body {
     transform: none;
 }
 
-/* Responsive */
+
 @media (max-width: 968px) {
     .container {
         flex-direction: column;
