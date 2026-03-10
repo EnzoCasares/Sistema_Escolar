@@ -1,46 +1,57 @@
-# Instituto RME — Backend FastAPI
+### Estrutura de Pastas
+Documentação detalhada de cada pasta principal:
 
-## Instalação
+```
+Sistema_Escolar/
+├── app/                    # Backend FastAPI
+│   ├── api/               # Rotas da API
+│   ├── core/              # Utilitários principais
+│   ├── crud/              # Operações de banco de dados
+│   ├── db/                # Configuração de banco de dados
+│   ├── models/            # Modelos SQLAlchemy
+│   ├── schemas/           # Schemas Pydantic
+│   ├── config.py          # Configurações
+│   └── main.py            # Inicialização FastAPI
+│
+├── frontend/              # Frontend HTML/CSS/JS
+│   ├── aluno/             # Páginas do aluno
+│   ├── professor/         # Páginas do professor
+│   ├── css/               # Estilos CSS
+│   ├── js/                # Scripts JavaScript
+│   ├── images/            # Imagens
+│   ├── index.html         # Página inicial
+│   └── login.html         # Página de login
+│
+├── requirements.txt       # Dependências Python
+└── README.md             # Este arquivo
+```
+
+### 📁 Descrição de Cada Pasta
+
+- **app/**: Backend da aplicação com FastAPI
+- **app/api/**: Rotas e endpoints da API REST
+- **app/crud/**: Operações Create, Read, Update, Delete no banco de dados
+- **app/db/**: Sessões e configurações do banco de dados
+- **app/models/**: Modelos de dados (SQLAlchemy ORM)
+- **app/schemas/**: Schemas de validação (Pydantic)
+- **frontend/**: Interface do usuário em HTML/CSS/JavaScript
+- **frontend/aluno/**: Funcionalidades e páginas para alunos
+- **frontend/professor/**: Funcionalidades e páginas para professores
+
+### 🚀 Como Rodar
 
 ```bash
+# 1. Instalar dependências
 pip install -r requirements.txt
-```
 
-## Executar
+# 2. Configurar variáveis de ambiente (.env)
+# Configure: DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
 
-```bash
-# Popula o banco com dados de teste
-python seed.py
-
-# Inicia o servidor
+# 3. Executar o servidor
 uvicorn app.main:app --reload
-```
 
-Acesse:
-- **Frontend (Primeiro Acesso):** http://localhost:8000
-- **Login:** http://localhost:8000/login.html
-- **Docs da API:** http://localhost:8000/docs
+# 4. Login no server
+Aluno: aluno@rme.com | aluno123
+Professor: prof1@rme.com | prof123
 
-## Endpoints
-
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| POST | `/api/v1/cadastro/validar-matricula` | Valida se matrícula existe e não tem cadastro |
-| POST | `/api/v1/cadastro/criar-credenciais` | Cria email/senha para o aluno |
-| POST | `/api/v1/cadastro/login` | Autentica e retorna JWT |
-
-## Fluxo de Cadastro
-
-1. Aluno informa matrícula → sistema valida
-2. Aluno cria email + senha → sistema vincula ao usuário
-3. Aluno faz login → recebe JWT com perfil (`aluno` / `professor` / `administrador`)
-
-## Banco de Dados
-
-Por padrão usa **SQLite** (`rme.db`). Para usar MySQL/PostgreSQL, altere `DATABASE_URL` no `.env`:
-
-```env
-DATABASE_URL=mysql+pymysql://user:pass@localhost/rme
-# ou
-DATABASE_URL=postgresql://user:pass@localhost/rme
 ```
